@@ -1,0 +1,57 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <fstream>
+#include <string>
+using namespace std;
+
+
+void planetName(string filename)
+{
+    srand(time(0));
+    string name="";
+    int tracker=0;
+    string planet_name[3125];
+    string pName[5];
+    ifstream fin(filename);
+    if(fin.is_open())
+    {
+        int x;
+        string line="";
+        while(getline(fin, line))
+        {
+                
+            planet_name[tracker]=line;
+            tracker++;
+        }
+    } 
+    int r1=rand()%3125+1;
+    string part2=planet_name[r1];
+    for(int i=0; i<3; i++)
+    {
+        //srand(time(0));
+        int r2=rand()%9;
+        pName[i]=to_string(r2);
+    }
+    for(int i=3; i<5; i++)
+    {
+       // srand(time(0));
+        int r2=rand()%25+65;
+        char letter= char(r2);
+        string l2= letter+"";
+        pName[i]=letter;
+    }
+    for(int i=0; i<5; i++)
+    {
+        //srand(time(0));
+        int r3=rand()%5;
+        string temp=pName[i];
+        pName[i]=pName[r3];
+    }
+    for (int j=0; j<6; j++)
+    {
+        name+=pName[j];
+    }
+    name=name+"-"+part2;
+    cout<<name<<endl;
+}
