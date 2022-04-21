@@ -66,7 +66,170 @@ void Map:: createNewMap()
         int r2= rand() % 11 +1;
         if(mapData[r1][r2]!='S'&&mapData[r1][r2]&&mapData[r1][r2]!='A' && mapData[r1][r2]!='X')
         {
-            misFortune[r1][r2]=rand()%4+1;
+            misFortune[r1][r2]=rand()%2+1;
+        }
+    }
+
+}
+int Map::Move()
+{
+    char move;
+    int x=0;
+    while(x==0)
+    {
+        cout<<"Select one: w. up s. down d. right a. left m. menu"<<endl;
+        cin>>move;
+        if(move=='a')
+        {
+            if(playerRow>=1)
+            {
+                mapData[playerRow][playerCol]='-';
+                playerRow=playerRow-1;
+                mapData[playerRow][playerCol]='X';
+                if(mapData[playerRow][playerCol]=='S')
+                {
+                    //means it's a site trait 
+                    return 1;
+                    x=1;
+                }
+                if(misFortune[playerRow][playerCol]!=0)
+                {
+                    //at a misfortune, need to get the type 
+                    return 2;
+                    x=1;
+                }
+                if(mapData[playerRow][playerCol]=='A')
+                {
+                    //talking to an alien
+                    return 3;
+                    x=1;
+                }
+                else 
+                {
+                    return 5;
+                    x=1;
+                }
+            }
+            else
+            {
+                //means it's out of bounds
+                cout<<"this move is out of bounds, re-enter a valid move"<<endl;
+            }
+        }
+        else if(move='d')
+        {
+            if(playerRow<11)
+            {
+                mapData[playerRow][playerCol]='-';
+                playerRow=playerRow+1;
+                mapData[playerRow][playerCol]='X';
+                if(mapData[playerRow][playerCol]=='S')
+                {
+                    //means it's a site trait 
+                    return 1;
+                    x=1;
+                }
+                else if(misFortune[playerRow][playerCol]!=0)
+                {
+                    //at a misfortune, need to get the type 
+                    return 2;
+                    x=1;
+                }
+                else if(mapData[playerRow][playerCol]=='A')
+                {
+                    //talking to an alien
+                    return 3;
+                    x=1;
+                }
+                else 
+                {
+                    //returns 5 when nothing happens 
+                    return 5;
+                    x=1;
+                }
+            }
+            else
+            {
+                //out of bounds
+                cout<<"this move is out of bounds, re-enter a vild move"<<endl;
+                
+            }
+        }
+        else if(move=='w')
+        {
+            if(playerCol>=0)
+            {
+                mapData[playerRow][playerCol]='-';
+                playerCol=playerCol-1;
+                mapData[playerRow][playerRow]='X';
+                if(mapData[playerRow][playerCol]=='S')
+                {
+                    //means it's a site trait 
+                    return 1;
+                    x=1;
+                }
+                else if(misFortune[playerRow][playerCol]!=0)
+                {
+                    //at a misfortune, need to get the type 
+                    return 2;
+                    x=1;
+                }
+                else if(mapData[playerRow][playerCol]=='A')
+                {
+                    //talking to an alien
+                    return 3;
+                    x=1;
+                }
+                else
+                {
+                    return 5;
+                    x=1;
+                }
+            }
+            else
+            {
+                cout<<"this move is out of bounds, re-enter a vild move"<<endl;
+            }
+        }
+        else if(move=='s')
+        {
+            if(playerCol>11)
+            {
+                mapData[playerRow][playerCol]='-';
+                playerCol=playerCol+1;
+                mapData[playerRow][playerRow]='X';
+                if(mapData[playerRow][playerCol]=='S')
+                {
+                    //means it's a site trait 
+                    return 1;
+                    x=1;
+                }
+                else if(misFortune[playerRow][playerCol]!=0)
+                {
+                    //at a misfortune, need to get the type 
+                    return 2;
+                    x=1;
+                }
+                else if(mapData[playerRow][playerCol]=='A')
+                {
+                    //talking to an alien
+                    return 3;
+                    x=1;
+                }
+                else
+                {
+                    return 5;
+                    x=1;
+                }
+            }
+            else
+            {
+                cout<<"this move is out of bounds, re-enter a vild move"<<endl;
+            }
+        }
+        else 
+        {
+            cout<<"invalid input"<<endl;
         }
     }
 
@@ -150,6 +313,7 @@ void Map::setSize()
     srand(time(0));
     size=(float)(rand()%8+0.5);
 }
+
 double Map::getSize()
 {
     return size;

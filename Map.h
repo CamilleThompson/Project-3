@@ -13,7 +13,7 @@ class Map
 {
     public:
         void createNewMap();
-        //
+        int Move();
         bool isMisfortune(int row, int column);
         int getPlayerColPosition();
         int getPlayerRowPosition();
