@@ -1,0 +1,7 @@
+Which item do you wish to buy?
+1. Weapon
+2. Translator
+3. Space suit
+4. Medical Kits
+5. Fuel
+6. Purchase and Leave
